@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPICYRoom | Global Luxury Hotels</title>
+    <link rel="stylesheet" href="Hotel.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">SPICY<span>Room</span></div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#destinations">Destinations</a>
+            <a href="#amenities">Amenities</a>
+            <a href="#" onclick="openModal()" class="book-btn">Book Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home">
+        <div class="hero-content">
+            <h1>Escape to Paradise</h1>
+            <p>Discover our luxury collection in Japan, France, and China.</p>
+            <a onclick="openModal()" class="cta-button">Find Your Destination</a>
+        </div>
+    </header>
+
+    <!-- Amenities Section -->
+    <section id="amenities" class="features">
+        <div class="feature-item">
+            <div class="feature-icon">🌏</div>
+            <h3>Prime Locations</h3>
+            <p>Situated in the heart of the world's most vibrant cities and landscapes.</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🍽️</div>
+            <h3>Local Cuisine</h3>
+            <p>Authentic dining experiences crafted by world-class regional chefs.</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">✨</div>
+            <h3>5-Star Service</h3>
+            <p>Unmatched hospitality ensuring your stay is nothing short of perfect.</p>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="rooms">
+        <div class="section-title">
+            <h2>Global Destinations</h2>
+            <p>Explore our exclusive properties. Use arrows to view more photos.</p>
+        </div>
+
+        <!-- JAPAN SECTION -->
+        <h3 class="country-title">🇯🇵 Japan Collection</h3>
+        <div class="room-grid">
+            <!-- Japan 1: Tokyo -->
+            <div class="room-card">
+                <div class="room-image-container">
+                    <button class="nav-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                    <div class="room-carousel">
+                        <img src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2025/06/10/2050/TYOTY-P1232-Regency-Suite-King.jpg/TYOTY-P1232-Regency-Suite-King.16x9.jpg?imwidth=800" alt="Hyatt Regency Tokyo" class="room-img">
+                        <img src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2025/06/10/2050/TYOTY-P1238-Diplomat-Suite.jpg/TYOTY-P1238-Diplomat-Suite.16x9.jpg?imwidth=1280" alt="Hyatt Regency Tokyo" class="room-img">
+                        <img src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2025/06/10/2050/TYOTY-P1234-Atrium-Suite-Double.jpg/TYOTY-P1234-Atrium-Suite-Double.16x9.jpg?imwidth=1280" alt="Hyatt Regency Tokyo" class="room-img">
+                    </div>
+                    <button class="nav-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                    <div class="carousel-badge">1/3</div>
+                </div>
+                <div class="room-info">
+                    <div class="room-header">
+                        <h3>Hyatt Regency Tokyo</h3>
+                        <div class="price">$350<span>/night</span></div>
+                    </div>
+                    <ul class="room-specs">
+                        <li><span>Size:</span> 45m²</li>
+                        <li><span>Bed:</span> King Size</li>
+                    </ul>
+                    <div class="amenities-list">
+                        <span>🏙️ City View</span>
+                        <span>🍣 Sushi Bar</span>
+                    </div>
+                    <p>Hyatt Regency Tokyo offers 712 modern rooms in 22 distinctive styles, including 18 luxurious suites and 34 studios. </p>
+                    <button class="room-btn" onclick="openModal('Hyatt Regency Tokyo', 350)">Booking</button>
+                </div>
+            </div>
+            <!-- Japan 2: Kyoto -->
+            <div class="room-card">
+                <div class="room-image-container">
+                    <button class="nav-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                    <div class="room-carousel">
+                        <img src="https://ak-d.tripcdn.com/images/0221312000aw08hwc12F8_R_600_400_R5.webp" alt="JR Tower Hotel Nikko Sapporo" class="room-img">
+                        <img src="https://ak-d.tripcdn.com/images/220f13000000v2bsi0276_R_600_400_R5.webp" alt="JR Tower Hotel Nikko Sapporo" class="room-img">
+                        <img src="https://ak-d.tripcdn.com/images/1mc5b12000hggl79vDD36_R_600_400_R5.webp" alt="JR Tower Hotel Nikko Sapporo" class="room-img">
+                    </div>
+                    <button class="nav-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                    <div class="carousel-badge">1/3</div>
+                </div>
+                <div class="room-info">
+                    <div class="room-header">
+                        <h3>JR Tower Hotel Nikko Sapporo</h3>
+                        <div class="price">$420<span>/night</span></div>
+                    </div>
+                    <ul class="room-specs">
+                        <li><span>Size:</span> 55m²</li>
+                        <li><span>Bed:</span> Traditional Futon</li>
+                    </ul>
+                    <div class="amenities-list">
+                        <span>🎋 Garden</span>
+                        <span>🍵 Tea House</span>
+                    </div>
+                    <p>Breakfast at JR Tower Hotel Nikko Sapporo is served at the restaurant on the 35th floor, offering a Japanese-Western buffet and a Japanese set menu.</p>
+                    <button class="room-btn" onclick="openModal('JR Tower Hotel Nikko Sapporo', 420)">Booking</button>
+                </div>
+            </div>
+            <!-- Japan 3: Hokkaido -->
+            <div class="room-card">
+                <div class="room-image-container">
+                    <button class="nav-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                    <div class="room-carousel">
+                        <img src="https://ak-d.tripcdn.com/images/200l11000000rg5y1A56F_R_600_400_R5.webp" alt="Vessel Hotel Campana Susukino Room" class="room-img">
+                        <img src="https://ak-d.tripcdn.com/images/200u15000000xc2890223_R_600_400_R5.webp" alt="Vessel Hotel Campana Susukino Snow" class="room-img">
+                        <img src="https://ak-d.tripcdn.com/images/200n15000000xb7w01577_R_600_400_R5.webp" alt="Vessel Hotel Campana Susukino Onsen" class="room-img">
+                    </div>
+                    <button class="nav-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                    <div class="carousel-badge">1/3</div>
+                </div>
+                <div class="room-info">
+                    <div class="room-header">
+                        <h3>Vessel Hotel Campana Susukino</h3>
+                        <div class="price">$280<span>/night</span></div>
+                    </div>
+                    <ul class="room-specs">
+                        <li><span>Size:</span> 50m²</li>
+                        <li><span>Bed:</span> Queen + Twin</li>
+                    </ul>
+                    <div class="amenities-list">
+                        <span>🏔️ Mountain</span>
+                        <span>♨️ Onsen</span>
+                    </div>
+                    <p>With a stay at Vessel Hotel Campana Susukino in Sapporo (Chuo-ku), you'll be within a 5-minute drive of Odori Park and Hokkaido University.</p>
+                    <button class="room-btn" onclick="openModal('Vessel Hotel Campana Susukino', 280)">Booking</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FRANCE SECTION -->
+        <h3 class="country-title">🇫🇷 France Collection</h3>
+        <div class="room-grid">
+            <!-- France 1:-->
+            <div class="room-card">
+                <div class="room-image-container">
+                    <button class="nav-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                    <div class="room-carousel">
+                        <img src="https://www.ahstatic.com/photos/0785_rodfb_00_p_1024x768.jpg" alt="Novotel Paris Les Halles" class="room-img">
+                        <img src="https://www.ahstatic.com/photos/0785_ho_02_p_1024x768.jpg" alt="Novotel Paris Les Halles" class="room-img">
+                        <img src="https://www.ahstatic.com/photos/0785_rodfb_02_p_1024x768.jpg" alt="Novotel Paris Les Halles" class="room-img">
+                    </div>
+                    <button class="nav-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                    <div class="carousel-badge">1/3</div>
+                </div>
+                <div class="room-info">
+                    <div class="room-header">
+                        <h3>Novotel Paris Les Halles</h3>
+                        <div class="price">$550<span>/night</span></div>
+                    </div>
+                    <ul class="room-specs">
+                        <li><span>Size:</span> 40m²</li>
+                        <li><span>Bed:</span> Royal King</li>
+                    </ul>
+                    <div class="amenities-list">
+                        <span>🗼 Eiffel View</span>
+                        <span>🍷 Wine Cellar</span>
+                    </div>
+                    <p>Our hotel is being renovated to enhance your experience! Each change is carefully thought out to guarantee a pleasant stay in a comfortable and welcoming setting. Novotel Paris Les Halles welcomes you in the heart of the capital. </p>
+                    <button class="room-btn" onclick="openModal('Novotel Paris Les Halles', 550)">Booking</button>
+                </div>
+            </div>
+            <!-- France 2: -->
+            <div class="room-card">
+                <div class="room-image-container">
+                    <button class="nav-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                    <div class="room-carousel">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/209916629.jpg?k=f7e60ba3915c79a453ad2c4b629dd3675bfc50fe1a88115b87cf1b7b3844b845&o=" alt="Hotel Napoléon" class="room-img">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max500/22054974.jpg?k=da1353c9af5a9ae298af90484bf2f5754ce0ec8a746454713cbe44e9cde399e0&o=" alt="Hotel Napoléon" class="room-img">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max300/8679304.jpg?k=26f5fcbbcad6ef7977ba869ac413d13cea8ae412755e519dc4f91995dc129b48&o=" alt="Hotel Napoléon" class="room-img">
+                    </div>
+                    <button class="nav-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                    <div class="carousel-badge">1/3</div>
+                </div>
+                <div class="room-info">
+                    <div class="room-header">
+                        <h3>Hotel Napoléon</h3>
+                        <div class="price">$480<span>/night</span></div>
+                    </div>
+                    <ul class="room-specs">
+                        <li><span>Size:</span> 60m²</li>
+                        <li><span>Bed:</span> California King</li>
+                    </ul>
+                    <div class="amenities-list">
+                        <span>🏖️ Beachfront</span>
+                        <span>⛵ Marina</span>
+                    </div>
+                    <p>Offering an outdoor pool, poolside fitness room, garden and 24-hour bar, Hotel Napoléon is located on the seafront in Menton, 2625 feet from Jean-Cocteau Museum. Free WiFi is available throughout the property. </p>
+                    <button class="room-btn" onclick="openModal('Hotel Napoléon', 480)">Booking</button>
+                </div>
+            </div>
+            <!-- France 3:-->
+            <div class="room-card">
+                <div class="room-image-container">
+                    <button class="nav-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                    <div class="room-carousel">
+                        <img src="https://www.ahstatic.com/photos/a7l5_ho_00_p_1024x768.jpg" alt="SO/ PARIS Hotel Room" class="room-img">
+                        <img src="https://www.ahstatic.com/photos/a7l5_ho_01_p_1024x768.jpg" alt="SO/ PARIS Hotel" class="room-img">
+                        <img src="https://www.ahstatic.com/photos/a7l5_ho_02_p_1024x768.jpg" alt="SO/ PARIS Hotel" class="room-img">
+                    </div>
+                    <button class="nav-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                    <div class="carousel-badge">1/3</div>
+                </div>
+                <div class="room-info">
+                    <div class="room-header">
+                        <h3>SO/ PARIS Hotel</h3>
+                        <div class="price">$320<span>/night</span></div>
+                    </div>
+                    <ul class="room-specs">
+                        <li><span>Size:</span> 55m²</li>
+                        <li><span>Bed:</span> Canopy Bed</li>
+                    </ul>
+                    <div class="amenities-list">
+                        <span>🍇 Vineyard</span>
+                        <span>🌿 Lavender</span>
+                    </div>
+                    <p>SO/ Paris, ideally located between the Marais and Île Saint-Louis, offers breathtaking views of Paris's most iconic landmarks. The hotel blends fashion, art, and avant-garde design, with chic rooms and suites featuring stunning vistas.</p>
+                    <button class="room-btn" onclick="openModal('SO/ PARIS Hotel', 320)">Booking</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHINA SECTION -->
+        <h3 class="country-title">🇨🇳 China Collection</h3>
+        <div class="room-grid">
+            <!-- China 1: Shanghai -->
+            <div class="room-card">
+                <div class="room-image-container">
+                    <button class="nav-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                    <div class="room-carousel">
+                        <img src="https://ak-d.tripcdn.com/images/1mc2712000dhzjiml1AD3_R_600_400_R5.webp" alt="J Hotel Shanghai Tower" class="room-img">
+                        <img src="https://ak-d.tripcdn.com/images/0203r120008t073sw1547_R_600_400_R5.webp" alt="J Hotel Shanghai Tower" class="room-img">
+                        <img src="https://ak-d.tripcdn.com/images/0224e12000a2c7guxAAEB_R_600_400_R5.webp" alt="J Hotel Shanghai Tower" class="room-img">
+                    </div>
+                    <button class="nav-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                    <div class="carousel-badge">1/3</div>
+                </div>
+                <div class="room-info">
+                    <div class="room-header">
+                        <h3>J Hotel Shanghai Tower</h3>
+                        <div class="price">$290<span>/night</span></div>
+                    </div>
+                    <ul class="room-specs">
+                        <li><span>Size:</span> 65m²</li>
+                        <li><span>Bed:</span> King Size</li>
+                    </ul>
+                    <div class="amenities-list">
+                        <span>🏙️ Bund View</span>
+                        <span>🍸 Sky Bar</span>
+                    </div>
+                    <p>The J Hotel Shanghai Tower is an ideal spot for travelers wanting to discover the city. Visitors to Shanghai will find that the J Hotel Shanghai Tower is a fantastic accommodation choice.</p>
+                    <button class="room-btn" onclick="openModal('J Hotel Shanghai Tower', 290)">Booking</button>
+                </div>
+            </div>
+            <!-- China 2: Beijing -->
+            <div class="room-card">
+                <div class="room-image-container">
+                    <button class="nav-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                    <div class="room-carousel">
+                        <img src="https://ak-d.tripcdn.com/images/1mc6i12000bikumfi79E6_R_960_660_R5_D.jpg" alt="Park Plaza Beijing Wangfujing" class="room-img">
+                        <img src="https://ak-d.tripcdn.com/images/1mc1e12000bikuktq770D_R_339_206_R5_D.jpg" alt="Park Plaza Beijing Wangfujing" class="room-img">
+                        <img src="https://ak-d.tripcdn.com/images/1mc1j12000bikuqieC96F_R_339_206_R5_D.jpg" alt="Park Plaza Beijing Wangfujing" class="room-img">
+                    </div>
+                    <button class="nav-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                    <div class="carousel-badge">1/3</div>
+                </div>
+                <div class="room-info">
+                    <div class="room-header">
+                        <h3>Park Plaza Beijing Wangfujing</h3>
+                        <div class="price">$260<span>/night</span></div>
+                    </div>
+                    <ul class="room-specs">
+                        <li><span>Size:</span> 50m²</li>
+                        <li><span>Bed:</span> King Size</li>
+                    </ul>
+                    <div class="amenities-list">
+                        <span>🏯 Heritage</span>
+                        <span>🦆 Dining</span>
+                    </div>
+                    <p>Park Plaza Beijing Wangfujing (Liting Jiudian) is located in the busy Wangfujing shopping area, close to the Forbidden City, Tian'anmen Square and other popular Beijing attractions. Also the hotel is about 900 meters from Peking Union Medical College Hospital.</p>
+                    <button class="room-btn" onclick="openModal('Park Plaza Beijing Wangfujing', 260)">Booking</button>
+                </div>
+            </div>
+            <!-- China 3: Guilin -->
+            <div class="room-card">
+                <div class="room-image-container">
+                    <button class="nav-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                    <div class="room-carousel">
+                        <img src="https://ak-d.tripcdn.com/images/0200w120009d3wz8f4147_R_960_660_R5_D.jpg" alt="Grand Bravo Guilin" class="room-img">
+                        <img src="http://ak-d.tripcdn.com/images/02011120008gjvbzy88D5_R_600_400_R5.webp" alt="Grand Bravo Guilin" class="room-img">
+                        <img src="https://ak-d.tripcdn.com/images/0205s120008gjw7ljB2C4_R_600_400_R5.webp" alt="Grand Bravo Guilin" class="room-img">
+                    </div>
+                    <button class="nav-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                    <div class="carousel-badge">1/3</div>
+                </div>
+                <div class="room-info">
+                    <div class="room-header">
+                        <h3>Grand Bravo Guilin</h3>
+                        <div class="price">$220<span>/night</span></div>
+                    </div>
+                    <ul class="room-specs">
+                        <li><span>Size:</span> 45m²</li>
+                        <li><span>Bed:</span> Bamboo Frame</li>
+                    </ul>
+                    <div class="amenities-list">
+                        <span>⛰️ Nature</span>
+                        <span>🛶 River</span>
+                    </div>
+                    <p>The Grand Bravo Hotel (Guilin Dagongguan Jiudian) is located just a 5-minute drive from Guilin's commercial center. The Guilin Railway Station is just a 9-minute drive away.</p>
+                    <button class="room-btn" onclick="openModal('Grand Bravo Guilin', 220)">Booking</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 style="margin-bottom: 1.5rem;">Book Your Stay</h2>
+            
+            <!-- Dynamic Room Preview -->
+            <div class="modal-details" id="roomPreviewSection">
+                <img id="modalRoomImg" src="" alt="Room Preview">
+                <div class="modal-details-text">
+                    <h4 id="modalRoomTitle">Select a Room</h4>
+                    <p id="modalRoomDesc">Choose a destination to view details.</p>
+                    <div id="modalRoomSpecs" style="margin-top: 5px; font-size: 0.85rem; color: #888;"></div>
+                </div>
+            </div>
+
+            <form id="bookingForm" onsubmit="handleBooking(event)">
+                <div class="form-group">
+                    <label for="roomType">Select Destination</label>
+                    <select id="roomType" class="form-control" onchange="updateModalPreview()">
+                        <optgroup label="Japan">
+                            <option value="Hyatt Regency Tokyo" data-price="350">Hyatt Regency Tokyo ($350)</option>
+                            <option value="JR Tower Hotel Nikko Sapporo" data-price="420">JR Tower Hotel Nikko Sapporo ($420)</option>
+                            <option value="Vessel Hotel Campana Susukino" data-price="280">Vessel Hotel Campana Susukino ($280)</option>
+                        </optgroup>
+                        <optgroup label="France">
+                            <option value="Novotel Paris Les Halles" data-price="550">Novotel Paris Les Halles ($550)</option>
+                            <option value="Hotel Napoléon" data-price="480">Hotel Napoléon ($480)</option>
+                            <option value="SO/ PARIS Hotel" data-price="320">SO/ PARIS Hotel ($320)</option>
+                        </optgroup>
+                        <optgroup label="China">
+                            <option value="J Hotel Shanghai Tower" data-price="290">J Hotel Shanghai Tower ($290)</option>
+                            <option value="Park Plaza Beijing Wangfujing" data-price="260">Park Plaza Beijing Wangfujing ($260)</option>
+                            <option value="Grand Bravo Guilin" data-price="220">Grand Bravo Guilin ($220)</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group" style="display: flex; gap: 1rem;">
+                    <div style="flex: 1;">
+                        <label for="checkIn">Check In</label>
+                        <input type="date" id="checkIn" class="form-control" required onchange="calculateTotal()">
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="checkOut">Check Out</label>
+                        <input type="date" id="checkOut" class="form-control" required onchange="calculateTotal()">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests">Guests</label>
+                    <select id="guests" class="form-control">
+                        <option>1 Adult</option>
+                        <option selected>2 Adults</option>
+                        <option>2 Adults, 1 Child</option>
+                        <option>2 Adults, 2 Children</option>
+                    </select>
+                </div>
+
+                <div id="summary" class="booking-summary">
+                    <div class="summary-row">
+                        <span>Nights:</span>
+                        <span id="nightCount">0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Price per night:</span>
+                        <span id="pricePerNight">$0</span>
+                    </div>
+                    <div class="summary-row total-price">
+                        <span>Total:</span>
+                        <span id="totalPrice">$0</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="room-btn">Confirm Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h2>SPICY<span>Room</span></h2>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Locations</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <p>&copy; 2026 SPICY Room Global. All rights reserved.</p>
+    </footer>
+
+    <script src="Hotel.js">
+    </script>
+</body>
+</html>

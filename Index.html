@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TREY CHHLONG TONLE</title>
+    <link rel="icon" type="image/png" href="logo/fish_logo_no_bg.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+</head>
+
+<body class="antialiased selection:bg-orange-700 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 bg-gradient-to-b from-black/90 to-transparent">
+        <div class="max-w-7xl mx-auto px-6 py-6">
+            <div class="flex justify-between items-center">
+                <!-- LOGO -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <i data-lucide="fish" class="w-8 h-8 text-orange-500 glow-orange"></i>
+                    <span class="font-brand font-bold text-lg tracking-widest text-white hidden sm:block">
+                        TREY CHHLONG TONLE
+                    </span>
+                    <!-- Mobile Logo Text (Visible only on very small screens if needed, otherwise hidden) -->
+                    <span class="font-brand font-bold text-lg tracking-widest text-white sm:hidden">
+                        TCT
+                    </span>
+                </div>
+
+                <!-- MENU LINKS (Desktop Only - Hidden on Mobile) -->
+                <div class="hidden md:flex items-center space-x-12 font-brand text-sm tracking-widest text-gray-400">
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                        class="hover:text-orange-500 transition-colors text-orange-500 glow-orange">HOME</button>
+                    <button onclick="toggleCart(true)" class="hover:text-orange-500 transition-colors relative">
+                        TICKETS
+                        <span id="cart-badge-nav"
+                            class="absolute -top-2 -right-3 bg-orange-600 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+                    </button>
+                    <button onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})"
+                        class="hover:text-orange-500 transition-colors">SERVICES</button>
+                </div>
+
+                <!-- ICONS -->
+                <div class="flex items-center gap-4">
+                    <!-- SEARCH BUTTON -->
+                    <button onclick="toggleSearch(true)"
+                        class="p-2 hover:bg-orange-900/20 rounded-full transition-colors text-white">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+
+                    <!-- AUTH TRIGGER (PROFILE ICON) -->
+                    <div id="auth-trigger"
+                        class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-600 to-black p-[2px] cursor-pointer"
+                        onclick="handleProfileClick()">
+                        <img id="nav-user-img" src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                            class="w-full h-full rounded-full object-cover border-2 border-black">
+                    </div>
+
+                    <!-- [NEW] MOBILE MENU TOGGLE BUTTON (Visible only on Mobile) -->
+                    <button onclick="toggleMobileMenu(true)" class="md:hidden p-2 text-white hover:text-orange-500 transition-colors">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- [NEW] MOBILE MENU FULL SCREEN OVERLAY -->
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-black/98 transform translate-x-full transition-transform duration-300 md:hidden flex flex-col items-center justify-center gap-8">
+        <!-- Close Button -->
+        <button onclick="toggleMobileMenu(false)" class="absolute top-6 right-6 text-gray-500 hover:text-white p-2">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        
+        <!-- Mobile Links -->
+        <div class="flex flex-col items-center gap-10 font-brand text-2xl tracking-widest">
+            <button onclick="toggleMobileMenu(false); window.scrollTo({top: 0, behavior: 'smooth'})" 
+                class="text-white hover:text-orange-500 hover:scale-110 transition-all glow-orange">HOME</button>
+            
+            <button onclick="toggleMobileMenu(false); toggleCart(true)" 
+                class="text-white hover:text-orange-500 hover:scale-110 transition-all">TICKETS</button>
+            
+            <button onclick="toggleMobileMenu(false); document.getElementById('services').scrollIntoView({behavior: 'smooth'})" 
+                class="text-white hover:text-orange-500 hover:scale-110 transition-all">SERVICES</button>
+        </div>
+
+        <!-- Mobile Socials -->
+        <div class="absolute bottom-16 flex gap-8 text-gray-600">
+            <i data-lucide="instagram" class="w-6 h-6"></i>
+            <i data-lucide="facebook" class="w-6 h-6"></i>
+            <i data-lucide="twitter" class="w-6 h-6"></i>
+        </div>
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div id="auth-modal"
+        class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+        <div class="bg-zinc-950 border border-zinc-800 w-full max-w-md p-8 rounded-sm relative shadow-2xl">
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <!-- LOGIN FORM -->
+            <div id="login-form">
+                <h2 class="font-brand text-2xl text-white mb-6 tracking-widest text-orange-500 uppercase">Sign In</h2>
+                <div class="space-y-4">
+                    <input type="email" id="login-email" placeholder="Email Address"
+                        class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-sm text-white focus:border-orange-600 outline-none transition-colors">
+                    <input type="password" id="login-password" placeholder="Password"
+                        class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-sm text-white focus:border-orange-600 outline-none transition-colors">
+                    
+                    <button onclick="handleLogin()"
+                        class="w-full py-3 bg-orange-600 text-white font-bold tracking-widest hover:bg-orange-500 transition-all shadow-lg active:scale-95">ENTER THE REALM</button>
+                    
+                    <p class="text-zinc-500 text-xs text-center pt-2">
+                        New traveler? <button onclick="switchAuth('signup')" class="text-orange-500 hover:underline">Create Account</button>
+                    </p>
+                </div>
+            </div>
+
+            <!-- SIGN UP FORM -->
+            <div id="signup-form" class="hidden">
+                <h2 class="font-brand text-2xl text-white mb-6 tracking-widest text-orange-500 uppercase">Join The Order</h2>
+                <div class="space-y-4">
+                    <input type="text" id="signup-name" placeholder="Full Name"
+                        class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-sm text-white focus:border-orange-600 outline-none transition-colors">
+                    <input type="email" id="signup-email" placeholder="Email Address"
+                        class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-sm text-white focus:border-orange-600 outline-none transition-colors">
+                    <input type="password" id="signup-password" placeholder="Create Password"
+                        class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-sm text-white focus:border-orange-600 outline-none transition-colors">
+                    
+                    <button onclick="handleSignup()"
+                        class="w-full py-3 bg-orange-600 text-white font-bold tracking-widest hover:bg-orange-500 transition-all shadow-lg active:scale-95">REGISTER</button>
+                    
+                    <p class="text-zinc-500 text-xs text-center pt-2">
+                        Already a member? <button onclick="switchAuth('login')" class="text-orange-500 hover:underline">Sign In</button>
+                    </p>
+                </div>
+            </div>
+
+            <!-- PROFILE VIEW -->
+            <div id="profile-view" class="hidden">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-24 h-24 rounded-full border-2 border-orange-600 p-1 mb-4 shadow-[0_0_20px_rgba(234,88,12,0.4)]">
+                        <img id="profile-pic-display" src="https://images.steamusercontent.com/ugc/12550951272907868323/FBA1789F1D766A857574F177BEDFAB16AF127B29/?w=200&q=80"
+                            class="w-full h-full rounded-full object-cover">
+                    </div>
+
+                    <h2 id="user-name-display" class="font-brand text-2xl text-white tracking-widest uppercase mb-6">Traveler</h2>
+
+                    <div class="w-full space-y-3 text-left">
+                        <div class="bg-zinc-900/50 p-3 border border-zinc-800 rounded">
+                            <p class="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">Email Address</p>
+                            <p id="user-email-display" class="text-sm text-white">traveler@dragonrealm.com</p>
+                        </div>
+                    </div>
+
+                    <button onclick="logout()"
+                        class="mt-8 text-zinc-500 hover:text-red-500 text-xs tracking-widest uppercase transition-colors flex items-center gap-2">
+                        <i data-lucide="log-out" class="w-3 h-3"></i> Abandon Journey (Logout)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div id="search-overlay"
+        class="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300 flex flex-col">
+        <div class="max-w-4xl mx-auto w-full px-6 pt-24 pb-12 h-full flex flex-col">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="font-brand text-3xl font-bold text-white tracking-widest">FIND YOUR PATH</h2>
+                <button onclick="toggleSearch(false)"
+                    class="p-2 bg-zinc-900 rounded-full hover:bg-orange-900 text-gray-400 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div class="relative mb-12">
+                <i data-lucide="search"
+                    class="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-500 w-6 h-6"></i>
+                <input type="text" id="search-input" placeholder="Search destination (e.g., Tokyo, Osaka)..."
+                    class="w-full bg-zinc-900/50 border border-zinc-800 rounded-full py-6 pl-16 pr-6 text-xl text-white placeholder-gray-600 focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600 transition-all">
+            </div>
+
+            <div class="flex-1 overflow-y-auto no-scrollbar">
+                <div id="search-results" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+                <div id="search-initial" class="block">
+                    <p class="text-xs font-bold text-orange-600 uppercase tracking-[0.2em] mb-6">Trending Destinations
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="fillSearch('Tokyo')"
+                            class="px-6 py-3 border border-zinc-800 rounded-full text-sm text-gray-300 hover:border-orange-600 hover:text-orange-500 transition-all">Tokyo</button>
+                        <button onclick="fillSearch('Kyoto')"
+                            class="px-6 py-3 border border-zinc-800 rounded-full text-sm text-gray-300 hover:border-orange-600 hover:text-orange-500 transition-all">Kyoto</button>
+                        <button onclick="fillSearch('Osaka')"
+                            class="px-6 py-3 border border-zinc-800 rounded-full text-sm text-gray-300 hover:border-orange-600 hover:text-orange-500 transition-all">Osaka</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART / TICKET DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-[60] overflow-hidden pointer-events-none">
+        <div id="cart-backdrop"
+            class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300 opacity-0"
+            onclick="toggleCart(false)"></div>
+        <div id="cart-panel"
+            class="absolute inset-y-0 right-0 max-w-md w-full flex flex-col bg-zinc-950 border-l border-zinc-800 shadow-2xl transform transition-transform duration-300 translate-x-full pointer-events-auto">
+            <div class="flex items-center justify-between px-8 py-6 border-b border-zinc-900">
+                <h2 class="font-brand text-xl font-bold text-white tracking-widest uppercase">My Tickets (<span id="cart-count-header">0</span>)</h2>
+                <button onclick="toggleCart(false)" class="text-gray-500 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div id="cart-items-container" class="flex-1 overflow-y-auto px-8 py-6 no-scrollbar">
+                <!-- Items injected here -->
+            </div>
+            <div id="cart-footer" class="border-t border-zinc-900 px-8 py-8 bg-black hidden">
+                <div class="flex justify-between text-xl font-bold text-white mb-6">
+                    <p>TOTAL</p>
+                    <p id="total-price" class="text-orange-500">$0.00</p>
+                </div>
+                <button onclick="alert('Proceeding to Secure Payment...')"
+                    class="w-full py-4 bg-orange-600 text-white rounded-sm font-bold tracking-widest hover:bg-orange-500 transition-colors shadow-[0_0_20px_rgba(234,88,12,0.3)]">CONFIRM
+                    BOOKING</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast-container" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[70] pointer-events-none space-y-2">
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="relative h-screen w-full overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent z-10"></div>
+            <div class="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-black to-transparent z-10"></div>
+            <img src="https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop"
+                class="w-full h-full object-cover opacity-90 scale-105 animate-pulse-slow">
+        </div>
+
+        <div class="relative z-20 h-full flex flex-col justify-center max-w-7xl mx-auto px-6">
+            <div class="max-w-3xl mt-20">
+                <h1 class="font-brand text-6xl md:text-8xl font-black text-white leading-[0.9] fade-in-up drop-shadow-2xl">
+                    VISIT <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-300 glow-orange">THE EMPIRE</span>
+                </h1>
+                <p class="mt-8 text-gray-200 text-lg md:text-xl max-w-lg tracking-wide fade-in-up delay-100 font-light border-l-4 border-orange-600 pl-6 bg-black/30 backdrop-blur-sm py-4 rounded-r-lg">
+                    Start Your Journey to Your Dream Destination with Us. Explore, Experience, and Embrace the Adventure of a Lifetime.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- DESTINATIONS GRID -->
+    <section id="destinations" class="py-20 bg-black relative">
+        <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-orange-900/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col items-center mb-12">
+                <p class="text-gray-400 text-sm tracking-[0.2em] uppercase mb-8">Top-tier places within the realm</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="filterDestinations('Japan')" id="btn-Japan"
+                        class="px-8 py-2 border border-orange-600 bg-orange-900/20 text-orange-500 hover:bg-orange-600 hover:text-white transition-all font-bold tracking-wider text-sm rounded-sm uppercase">Japan</button>
+                    <button onclick="filterDestinations('France')" id="btn-France"
+                        class="px-8 py-2 border border-zinc-800 text-gray-500 hover:border-orange-600 hover:text-orange-500 transition-all font-bold tracking-wider text-sm rounded-sm uppercase">France</button>
+                    <button onclick="filterDestinations('China')" id="btn-China"
+                        class="px-8 py-2 border border-zinc-800 text-gray-500 hover:border-orange-600 hover:text-orange-500 transition-all font-bold tracking-wider text-sm rounded-sm uppercase">China</button>
+                </div>
+            </div>
+
+            <div id="destinations-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 min-h-[500px]">
+                <!-- Destinations rendered here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- DESCRIPTION SECTION -->
+    <section id="description-section" class="py-16 bg-black border-t border-zinc-900 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-12 items-start">
+                <div class="md:w-1/3">
+                    <h2 id="desc-title" class="font-brand text-4xl font-bold text-white mb-4 border-l-4 border-orange-600 pl-4 uppercase">THE LEGEND <br> OF TOKYO</h2>
+                    <div class="h-1 w-20 bg-orange-600 mt-4"></div>
+                    <button id="desc-book-btn" onclick="addToCart(1)"
+                        class="mt-8 px-8 py-3 bg-zinc-900 border border-orange-600 text-orange-500 font-bold tracking-widest hover:bg-orange-600 hover:text-white transition-all shadow-[0_0_15px_rgba(234,88,12,0.2)] flex items-center gap-2 uppercase">
+                        Book Ticket <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+                <div class="md:w-2/3">
+                    <p id="desc-content" class="text-gray-400 leading-relaxed text-sm md:text-base text-justify font-light">
+                        Tokyo, the dynamic capital, stands as a mesmerizing blend of ultramodern innovation and time-honored tradition. Under the crimson moonlight, the city transforms into a sprawling labyrinth of neon and shadow. From the scramble crossing of Shibuya to the ancient Senso-ji Temple, every corner tells a story of the Dragon's legacy. Experience the pulse of a city that never sleeps.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-20 bg-[#050505] border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-center text-xl text-gray-300 mb-16 tracking-wide font-light">
+                We guide you through the <span class="text-orange-600 font-bold uppercase">darkness</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-8 flex items-center gap-2"><span class="w-2 h-2 bg-orange-600 rounded-full"></span> Services</h3>
+                    <div class="grid grid-cols-2 gap-y-12 gap-x-8 text-center">
+                        <div class="flex flex-col items-center group cursor-pointer">
+                            <a href="Taxi.html" target="_blank"><div class="w-12 h-12 mb-3 bg-zinc-900 rounded-lg flex items-center justify-center border border-zinc-800 group-hover:border-orange-900 transition-colors">
+                                <i data-lucide="car" class="w-6 h-6 text-gray-400 group-hover:text-orange-500"></i>
+                            </div></a>
+                            <span class="text-xs text-gray-500 group-hover:text-white uppercase tracking-widest">Transport</span>
+                        </div>
+                        <div class="flex flex-col items-center group cursor-pointer">
+                            <a href="Hotel.html" target="_blank"><div class="w-12 h-12 mb-3 bg-zinc-900 rounded-lg flex items-center justify-center border border-zinc-800 group-hover:border-orange-900 transition-colors">
+                                <i data-lucide="Hotel" class="w-6 h-6 text-gray-400 group-hover:text-orange-500"></i>
+                            </div></a>
+                            <span class="text-xs text-gray-500 group-hover:text-white uppercase tracking-widest">Hotels</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-8 flex items-center gap-2"><span class="w-2 h-2 bg-orange-600 rounded-full"></span> Lifestyle</h3>
+                    <div class="grid grid-cols-2 gap-y-12 gap-x-8 text-center">
+                        <div class="flex flex-col items-center group cursor-pointer">
+                            <div class="w-12 h-12 mb-3 bg-zinc-900 rounded-lg flex items-center justify-center border border-zinc-800 group-hover:border-orange-900 transition-colors">
+                                <i data-lucide="utensils" class="w-6 h-6 text-gray-400 group-hover:text-orange-500"></i>
+                            </div>
+                            <span class="text-xs text-gray-500 group-hover:text-white uppercase tracking-widest">Dining</span>
+                        </div>
+                        <div class="flex flex-col items-center group cursor-pointer">
+                            <div class="w-12 h-12 mb-3 bg-zinc-900 rounded-lg flex items-center justify-center border border-zinc-800 group-hover:border-orange-900 transition-colors">
+                                <i data-lucide="gift" class="w-6 h-6 text-gray-400 group-hover:text-orange-500"></i>
+                            </div>
+                            <span class="text-xs text-gray-500 group-hover:text-white uppercase tracking-widest">Artifacts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-zinc-900 bg-black">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-2">
+                <span class="text-[10px] text-gray-500 tracking-[0.3em] uppercase">© 2026 TREY CHHLONG TONLE</span>
+            </div>
+            <div class="flex gap-8">
+                <a href="#" class="text-gray-600 hover:text-orange-600 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-600 hover:text-orange-600 transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-600 hover:text-orange-600 transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAKETAXI - Fast & Reliable Taxi Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="logo/Taxi.png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Custom Taxi Yellow */
+        .bg-taxi { background-color: #F7C948; }
+        .text-taxi { color: #F7C948; }
+        .hover-bg-taxi:hover { background-color: #F0B429; }
+        .border-taxi { border-color: #F7C948; }
+
+        /* Hero Background */
+        .hero-section {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Animations */
+        @keyframes driveIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .drive-in { animation: driveIn 0.8s ease-out forwards; }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(247, 201, 72, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(247, 201, 72, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(247, 201, 72, 0); }
+        }
+        .pulse-btn { animation: pulse-ring 2s infinite; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900 text-white fixed w-full z-50 shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="bg-taxi text-gray-900 p-2 rounded mr-2 font-bold text-xl">TAXI</div>
+                    <span class="font-bold text-2xl tracking-wider">FAKE<span class="text-taxi">TAXI</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="hover:text-taxi transition">Home</a>
+                    <a href="#fleet" class="hover:text-taxi transition">Our Fleet</a>
+                    <a href="#download" class="hover:text-taxi transition">Get App</a>
+                    <a href="#driver" class="border-2 border-taxi text-taxi hover:bg-taxi hover:text-gray-900 px-4 py-2 rounded font-bold transition">Become a Driver</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-white hover:text-taxi focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 text-center pb-4">
+            <a href="#home" class="block py-2 text-white hover:text-taxi">Home</a>
+            <a href="#fleet" class="block py-2 text-white hover:text-taxi">Fleet</a>
+            <a href="#booking" class="block py-2 text-white hover:text-taxi">Book Now</a>
+            <a href="#driver" class="block py-2 text-taxi font-bold">Driver Signup</a>
+        </div>
+    </nav>
+
+    <!-- Hero & Booking Widget Section -->
+    <section id="home" class="hero-section min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                
+                <!-- Hero Text -->
+                <div class="lg:w-1/2 text-white drive-in">
+                    <span class="bg-taxi text-gray-900 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wide mb-4 inline-block">Best in City</span>
+                    <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                        Reliable Rides <br>
+                        <span class="text-taxi">In Minutes</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8">
+                        Experience the safest and fastest way to get around the city. Fixed prices, professional drivers, and 24/7 support.
+                    </p>
+                    <div class="flex gap-4">
+                        <button class="bg-white text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition flex items-center">
+                            <i class="fab fa-apple text-2xl mr-2"></i> App Store
+                        </button>
+                        <button class="bg-transparent border border-white text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-gray-900 transition flex items-center">
+                            <i class="fab fa-google-play text-xl mr-2"></i> Play Store
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Booking Widget -->
+                <div id="booking" class="lg:w-1/2 w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 relative z-10 transform hover:scale-[1.01] transition duration-300">
+                    <div class="flex justify-between items-center mb-6 border-b pb-4">
+                        <h3 class="text-2xl font-bold text-gray-800">Book a FAKETAXI</h3>
+                        <span class="text-green-600 font-semibold text-sm flex items-center"><i class="fas fa-circle text-xs mr-1 animate-pulse"></i> Drivers Available</span>
+                    </div>
+
+                    <form id="booking-form" onsubmit="handleBooking(event)" class="space-y-4">
+                        <!-- Pickup -->
+                        <div class="relative">
+                            <i class="fas fa-map-marker-alt absolute left-4 top-3.5 text-green-500 text-lg"></i>
+                            <input type="text" id="pickup" required placeholder="Pickup Location" class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none transition">
+                        </div>
+                        
+                        <!-- Dropoff -->
+                        <div class="relative">
+                            <i class="fas fa-location-arrow absolute left-4 top-3.5 text-red-500 text-lg"></i>
+                            <input type="text" id="dropoff" required placeholder="Dropoff Location" class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none transition">
+                        </div>
+
+                        <!-- Car Type Selection -->
+                        <div class="grid grid-cols-3 gap-2">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="cartype" value="economy" checked class="peer sr-only">
+                                <div class="p-2 border rounded-lg text-center peer-checked:bg-yellow-50 peer-checked:border-yellow-400 hover:bg-gray-50 transition">
+                                    <i class="fas fa-car-side text-gray-600 mb-1"></i>
+                                    <div class="text-xs font-bold">Eco</div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="cartype" value="standard" class="peer sr-only">
+                                <div class="p-2 border rounded-lg text-center peer-checked:bg-yellow-50 peer-checked:border-yellow-400 hover:bg-gray-50 transition">
+                                    <i class="fas fa-car text-gray-600 mb-1"></i>
+                                    <div class="text-xs font-bold">Standard</div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="cartype" value="premium" class="peer sr-only">
+                                <div class="p-2 border rounded-lg text-center peer-checked:bg-yellow-50 peer-checked:border-yellow-400 hover:bg-gray-50 transition">
+                                    <i class="fas fa-shuttle-van text-gray-600 mb-1"></i>
+                                    <div class="text-xs font-bold">Van</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="relative">
+                            <i class="fas fa-phone absolute left-4 top-3.5 text-gray-400"></i>
+                            <input type="tel" placeholder="Phone Number" class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 outline-none">
+                        </div>
+
+                        <button type="submit" class="w-full bg-taxi hover-bg-taxi text-gray-900 font-bold py-4 rounded-lg shadow-lg shadow-yellow-400/30 transition transform hover:-translate-y-1">
+                            Get Fare Estimate
+                        </button>
+                    </form>
+
+                    <!-- Simulation Result Container -->
+                    <div id="booking-result" class="hidden mt-6 pt-6 border-t border-gray-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase tracking-wide">Estimated Fare</p>
+                                <p class="text-3xl font-bold text-gray-900" id="fare-price">$0.00</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500 uppercase tracking-wide">Duration</p>
+                                <p class="text-lg font-bold text-gray-900" id="trip-time">0 min</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 items-center bg-green-50 text-green-700 p-3 rounded-md text-sm mb-4">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Driver <strong>Michael</strong> (4.9★) is 3 mins away.</span>
+                        </div>
+                        <button onclick="confirmBooking()" class="w-full bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-gray-800 transition">
+                            Confirm Booking
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-12">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6">
+                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 text-taxi text-3xl">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">1. Set Destination</h3>
+                    <p class="text-gray-600">Enter pickup and dropoff locations to see available rides and estimated fares instantly.</p>
+                </div>
+                <div class="p-6">
+                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 text-taxi text-3xl">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">2. Choose Ride</h3>
+                    <p class="text-gray-600">Select the vehicle type that fits your needs and budget, from Economy to Premium.</p>
+                </div>
+                <div class="p-6">
+                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 text-taxi text-3xl">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">3. Enjoy the Trip</h3>
+                    <p class="text-gray-600">Your driver will pick you up. Track your ride in real-time and pay securely via the app.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fleet Section -->
+    <section id="fleet" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-orange-500 font-bold tracking-wide uppercase text-sm mb-2">Our Fleet</h2>
+                <h3 class="text-4xl font-bold text-gray-900">Choose Your Ride</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Economy -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition duration-300">
+                    <div class="bg-gray-100 h-48 flex items-center justify-center p-4">
+                        <i class="fas fa-car-side text-6xl text-gray-400 group-hover:text-taxi transition duration-300 transform group-hover:scale-110"></i>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Economy</h4>
+                        <p class="text-gray-500 text-sm mb-4">Toyota Prius, Honda Civic</p>
+                        <div class="flex justify-between items-center text-sm text-gray-600 mb-6">
+                            <span><i class="fas fa-user mr-1"></i> 4 Seats</span>
+                            <span><i class="fas fa-suitcase mr-1"></i> 2 Bags</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-gray-900">$1.20<span class="text-sm text-gray-500 font-normal">/mi</span></span>
+                            <button class="bg-gray-900 text-white px-4 py-2 rounded font-semibold hover:bg-gray-700 transition">Select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard/Yellow Cab -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition duration-300 border-2 border-taxi relative">
+                    <div class="absolute top-0 right-0 bg-taxi text-xs font-bold px-3 py-1 rounded-bl-lg text-gray-900">POPULAR</div>
+                    <div class="bg-yellow-50 h-48 flex items-center justify-center p-4">
+                        <i class="fas fa-taxi text-6xl text-yellow-500 group-hover:text-yellow-600 transition duration-300 transform group-hover:scale-110"></i>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">City Taxi</h4>
+                        <p class="text-gray-500 text-sm mb-4">Ford Crown, Toyota Camry</p>
+                        <div class="flex justify-between items-center text-sm text-gray-600 mb-6">
+                            <span><i class="fas fa-user mr-1"></i> 4 Seats</span>
+                            <span><i class="fas fa-suitcase mr-1"></i> 3 Bags</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-gray-900">$1.50<span class="text-sm text-gray-500 font-normal">/mi</span></span>
+                            <button class="bg-taxi text-gray-900 px-4 py-2 rounded font-semibold hover:bg-yellow-500 transition">Select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition duration-300">
+                    <div class="bg-gray-900 h-48 flex items-center justify-center p-4">
+                        <i class="fas fa-car text-6xl text-gray-600 group-hover:text-white transition duration-300 transform group-hover:scale-110"></i>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Business Class</h4>
+                        <p class="text-gray-500 text-sm mb-4">Mercedes E-Class, BMW 5</p>
+                        <div class="flex justify-between items-center text-sm text-gray-600 mb-6">
+                            <span><i class="fas fa-user mr-1"></i> 3 Seats</span>
+                            <span><i class="fas fa-suitcase mr-1"></i> 3 Bags</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-gray-900">$2.80<span class="text-sm text-gray-500 font-normal">/mi</span></span>
+                            <button class="bg-gray-900 text-white px-4 py-2 rounded font-semibold hover:bg-gray-700 transition">Select</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download CTA -->
+    <section id="download" class="bg-gray-900 py-20 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-taxi rounded-full blur-3xl opacity-10 transform translate-x-1/2 -translate-y-1/2"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h2 class="text-4xl font-bold text-white mb-6">Get the FAKETAXI App</h2>
+                <p class="text-gray-400 text-lg mb-8">Download our app for faster booking, real-time tracking, and exclusive in-app discounts. Available for iOS and Android.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="flex items-center justify-center bg-white text-gray-900 px-6 py-3 rounded-lg hover:bg-gray-100 transition">
+                        <i class="fab fa-apple text-3xl mr-3"></i>
+                        <div class="text-left">
+                            <div class="text-xs">Download on the</div>
+                            <div class="font-bold text-lg leading-none">App Store</div>
+                        </div>
+                    </button>
+                    <button class="flex items-center justify-center bg-transparent border border-gray-600 text-white px-6 py-3 rounded-lg hover:border-white transition">
+                        <i class="fab fa-google-play text-2xl mr-3"></i>
+                        <div class="text-left">
+                            <div class="text-xs">GET IT ON</div>
+                            <div class="font-bold text-lg leading-none">Google Play</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center relative">
+                <!-- Mockup Phone Shape -->
+                <div class="w-64 h-[500px] border-8 border-gray-800 rounded-[3rem] bg-gray-800 shadow-2xl relative z-10 overflow-hidden">
+                    <div class="bg-white h-full w-full flex flex-col relative">
+                        <!-- Mockup Screen Content -->
+                        <div class="bg-gray-900 h-24 text-white p-4 pt-8 text-center font-bold">FAKETAXI Map</div>
+                        <div class="flex-1 bg-gray-200 relative">
+                            <!-- Map lines simulation -->
+                            <div class="absolute top-10 left-0 w-full h-2 bg-white"></div>
+                            <div class="absolute top-20 left-10 w-2 h-full bg-white"></div>
+                            <div class="absolute bottom-20 right-0 w-full h-2 bg-white"></div>
+                            <!-- Car icon -->
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-taxi p-2 rounded-full shadow-lg">
+                                <i class="fas fa-car text-gray-900"></i>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 border-t">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="font-bold text-sm">Arriving in 3 min</div>
+                                <div class="bg-gray-100 px-2 py-1 rounded text-xs font-bold">TOYOTA</div>
+                            </div>
+                            <div class="w-full bg-taxi text-center py-2 rounded font-bold text-sm">Contact Driver</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Decorative blob -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-taxi rounded-full opacity-20 blur-2xl z-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Become a Driver -->
+    <section id="driver" class="py-20 bg-taxi">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-gray-900 mb-6">Drive with FAKETAXI</h2>
+            <p class="text-gray-900 text-xl mb-8 max-w-2xl mx-auto">Be your own boss. Work flexible hours and earn great money driving your own car.</p>
+            <div class="flex justify-center gap-4">
+                <button class="bg-gray-900 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-800 transition shadow-xl">
+                    Sign Up to Drive
+                </button>
+                <button class="bg-white text-gray-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                    Learn More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="bg-taxi text-gray-900 p-1 rounded mr-2 font-bold text-sm">TAXI</div>
+                        <span class="font-bold text-xl text-white">FAKE<span class="text-taxi">TAXI</span></span>
+                    </div>
+                    <p class="text-sm">The smartest way to move around the city. Reliable, safe, and affordable rides at your fingertips.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-taxi">About Us</a></li>
+                        <li><a href="#" class="hover:text-taxi">Blog</a></li>
+                        <li><a href="#" class="hover:text-taxi">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-taxi">Help Center</a></li>
+                        <li><a href="#" class="hover:text-taxi">Safety</a></li>
+                        <li><a href="#" class="hover:text-taxi">Lost & Found</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-phone mr-2"></i> +855 (555) 123-TAXI</li>
+                        <li><i class="fas fa-envelope mr-2"></i> support@faketaxi.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                &copy; 2026 FAKETAXI Transport Services. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        // Mobile Menu
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+        // Booking Simulation Logic
+        function handleBooking(e) {
+            e.preventDefault();
+            const pickup = document.getElementById('pickup').value;
+            const dropoff = document.getElementById('dropoff').value;
+            const button = e.target.querySelector('button');
+            const resultDiv = document.getElementById('booking-result');
+            
+            if(!pickup || !dropoff) return;
+
+            // Loading State
+            const originalText = button.innerText;
+            button.innerText = 'Calculating best route...';
+            button.disabled = true;
+            button.classList.add('opacity-75');
+
+            setTimeout(() => {
+                // Generate random realistic numbers
+                const distance = (Math.random() * 10 + 2).toFixed(1);
+                const price = (5 + (distance * 1.5)).toFixed(2);
+                const time = Math.floor(distance * 3);
+
+                document.getElementById('fare-price').innerText = '$' + price;
+                document.getElementById('trip-time').innerText = time + ' min';
+                
+                // Show Results
+                resultDiv.classList.remove('hidden');
+                resultDiv.classList.add('fade-in-up');
+                
+                // Reset Button
+                button.innerText = originalText;
+                button.disabled = false;
+                button.classList.remove('opacity-75');
+            }, 1500);
+        }
+
+        function confirmBooking() {
+            const btn = event.target;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Finding Driver...';
+            
+            setTimeout(() => {
+                btn.classList.remove('bg-gray-900', 'hover:bg-gray-800');
+                btn.classList.add('bg-green-600', 'hover:bg-green-700');
+                btn.innerHTML = '<i class="fas fa-check mr-2"></i> Driver Confirmed!';
+                
+                setTimeout(() => {
+                    alert('Booking Confirmed! Your driver Michael is on the way.');
+                    // Reset form
+                    document.getElementById('booking-form').reset();
+                    document.getElementById('booking-result').classList.add('hidden');
+                    btn.classList.add('bg-gray-900', 'hover:bg-gray-800');
+                    btn.classList.remove('bg-green-600', 'hover:bg-green-700');
+                    btn.innerText = 'Confirm Booking';
+                }, 2000);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

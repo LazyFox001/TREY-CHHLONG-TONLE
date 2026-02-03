@@ -1,0 +1,76 @@
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .font-brand {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Hide scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Neon Orange Glows */
+        .glow-orange {
+            text-shadow: 0 0 20px rgba(234, 88, 12, 0.9);
+        }
+
+        .border-glow {
+            box-shadow: 0 0 15px rgba(234, 88, 12, 0.3);
+        }
+
+        /* Card Hover Effects */
+        .card-zoom {
+            transition: transform 0.7s ease;
+        }
+
+        .group:hover .card-zoom {
+            transform: scale(1.15);
+        }
+
+        /* Animations */
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-up {
+            animation: slideUp 0.3s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
